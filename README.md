@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # api-dio
 
 ## Description
@@ -36,3 +37,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+=======
+## titulo
+>>>>>>> 4a3f0284d3750741391b955da9f6de96d00da53c
