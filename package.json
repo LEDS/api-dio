@@ -15,7 +15,8 @@
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "webpack": "webpack --config webpack.config.js",
-    "cucumber": "cucumber-js ./test/features -r ./test/steps"
+    "cucumber": "cucumber-js ./test/features -r ./test/steps",
+    "release": "standard-version"
   },
   "dependencies": {
     "@nestjs/common": "^5.0.0",
@@ -39,6 +40,7 @@
     "jest": "^21.2.1",
     "nodemon": "^1.14.1",
     "prettier": "^1.11.1",
+    "standard-version": "^4.4.0",
     "supertest": "^3.0.0",
     "ts-jest": "^21.2.4",
     "ts-loader": "^4.1.0",
