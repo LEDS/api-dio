@@ -1,6 +1,6 @@
 {
   "name": "api-dio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "cleta informações do diario oficial do ES",
   "author": "Prodest",
   "license": "MIT",
@@ -16,7 +16,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "webpack": "webpack --config webpack.config.js",
     "cucumber": "cucumber-js ./test/features -r ./test/steps",
-    "release": "standard-version"
+    "release": "standard-version",
+    "commit": "git-cz",
+    "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
   },
   "dependencies": {
     "@nestjs/common": "^5.0.0",
@@ -37,6 +39,8 @@
     "@types/node": "^9.3.0",
     "@types/supertest": "^2.0.4",
     "cucumber": "^4.2.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "husky": "^1.0.0-rc.9",
     "jest": "^21.2.1",
     "nodemon": "^1.14.1",
     "prettier": "^1.11.1",
@@ -47,6 +51,7 @@
     "ts-node": "^4.1.0",
     "tsconfig-paths": "^3.1.1",
     "tslint": "5.3.2",
+    "validate-commit-msg": "^2.14.0",
     "webpack": "^4.2.0",
     "webpack-cli": "^2.0.13",
     "webpack-node-externals": "^1.6.0"
@@ -63,5 +68,19 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "coverageDirectory": "../coverage"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg"
+    }
   }
 }
