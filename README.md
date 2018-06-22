@@ -26,6 +26,10 @@ npm run start:prod
 ## Test
 
 ```bash
+
+# cucumber
+$ npm run cucumber
+
 # unit tests
 $ npm run test
 
