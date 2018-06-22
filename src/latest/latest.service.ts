@@ -7,8 +7,8 @@ export class LatestService {
 
     async get(){
         const pagina = await this.httpService
-      .get('http://ioes.dio.es.gov.br/apifront/portal/edicoes/ultimas_edicoes/')
-      .toPromise();
+        .get('http://ioes.dio.es.gov.br/apifront/portal/edicoes/ultimas_edicoes/')
+        .toPromise();
         const lista = []
         pagina.data.itens.forEach(element => {
             const noticia = new Latest()

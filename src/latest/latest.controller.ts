@@ -6,7 +6,7 @@ export class LatestController {
     constructor(private ls : LatestService) {}
     @Get()
     @HttpCode(200)
-    async latest(){
+    async search(){
         return  this.ls.get()
     }
 }
