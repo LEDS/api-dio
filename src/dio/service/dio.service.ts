@@ -13,6 +13,7 @@ export class DioService {
 
     constructor(private readonly httpService: HttpService){}
 
+    /** Retornar os últimos diários do Dio */
     async retornar_ultirmos_diarios(){
 
         const pagina = await this.buscar_informacao(this.url_api);
@@ -33,6 +34,7 @@ export class DioService {
         }
         throw new Error('Error');
     }
+    /** Retornar as noticias do dia do Dio */
     async retornar_noticias(){
 
         const pagina = await this.buscar_informacao(this.url_noticias);
@@ -46,11 +48,10 @@ export class DioService {
 
         for (let index = 0; index < textos.length; index++) {
 
-            const conteudo = textos[index];
-            const titulo = titulos[index];
-            const data = datas[index];
-
-            const noticia = new Noticia(titulo, conteudo, data);
+            const noticia = new Noticia(
+                titulos[index],
+                textos[index],
+                datas[index]);
 
             noticias.push(noticia);
         }
@@ -59,6 +60,7 @@ export class DioService {
         }
         throw new Error('Error');
     }
+    /** Falta finalizar */
     async buscar_diarios(query: string ){
 
         const pagina = await this.buscar_informacao(this.url_busca + query + '&f=true');
