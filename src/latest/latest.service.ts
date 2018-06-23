@@ -11,8 +11,7 @@ export class LatestService {
 
     async get(){
         
-        const pagina = await this.httpService
-        .get(this.url_api)
+        const pagina = await this.httpService.get(this.url_api)
         .toPromise();
         
         const noticias = [];
@@ -27,7 +26,11 @@ export class LatestService {
             
             noticias.push(noticia)
         });
-
-      return noticias
+        
+        if (typeof noticias !== 'undefined' && noticias.length > 0) {
+            return noticias
+        }
+        
+        throw new Error('Error');    
     }
 }
