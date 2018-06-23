@@ -31,8 +31,8 @@ export class DioController {
     @Get('busca/:query')
     async busca(@Param('query') query){
         try{
-            return  this.dioService.buscar_diarios(query);
-        }catch(error){
+            return this.dioService.buscar_diarios(query);
+        }catch (error){
             throw new InformationNotFound('Busca sem informação');
         }
     }
