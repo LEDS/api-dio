@@ -39,21 +39,21 @@ export class DioService {
         const pagina = await this.buscar_informacao(this.url_noticias);
 
         const $ = cheerio.load(pagina.data);
-        const titulo = this.buscar_titulos($);
-        const data = this.buscar_data($);
-        const texto = this.buscar_texto($);
+        const titulos = this.buscar_titulos($);
+        const datas = this.buscar_data($);
+        const textos = this.buscar_texto($);
 
         const noticias = [];
 
-        for (let index = 0; index < texto.length; index++) {
-            const etexto = texto[index];
-            const etitulo = titulo[index];
-            const edata = data[index];
+        for (let index = 0; index < textos.length; index++) {
+            const texto = textos[index];
+            const titulo = titulos[index];
+            const data = datas[index];
 
             const noticia = new Noticia();
-            noticia.titulo = etitulo;
-            noticia.conteudo = etexto;
-            noticia.data = edata;
+            noticia.titulo = titulo;
+            noticia.conteudo = texto;
+            noticia.data = data;
             noticias.push(noticia);
         }
         if (noticias.length > 0) {
