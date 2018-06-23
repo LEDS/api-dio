@@ -9,7 +9,8 @@ Given Eu sou um usuário
 When  Eu quero saber as últimas noticias do DIO
 Then  O sistema retorna as últimas noticias do DIO
 
-Scenario: Error ao retonar as última edições do DIO
+Scenario: O DIO não está funcionando 
 Given Eu sou um usuário
+But   O diário está fora do ar
 When  Eu quero saber as últimas noticias do DIO
 Then  O sistema informar uma mensagem de error

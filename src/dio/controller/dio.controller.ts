@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpException, HttpStatus,Param} from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpException, HttpStatus, Param} from '@nestjs/common';
 import { DioService } from '../service/dio.service';
 import { InformationNotFound } from '../model/exception/InformationNotFound';
 
@@ -13,7 +13,7 @@ export class DioController {
     @HttpCode(200)
     async retornar_diarios() {
         try {
-            return this.dioService.retornar_ultirmos_diarios();
+            return this.dioService.retornar_ultimos_diarios();
         } catch (error) {
             throw new InformationNotFound('Diarios não encontrados');
         }

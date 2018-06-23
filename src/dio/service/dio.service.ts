@@ -14,7 +14,7 @@ export class DioService {
     constructor(private readonly httpService: HttpService){}
 
     /** Retornar os últimos diários do Dio */
-    async retornar_ultirmos_diarios(){
+    async retornar_ultimos_diarios(){
 
         const pagina = await this.buscar_informacao(this.url_api);
 
