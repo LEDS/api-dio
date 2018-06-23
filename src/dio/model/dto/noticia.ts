@@ -3,3 +3,5 @@ export class Noticia {
     conteudo: string;
     data: string;
 }
+
+
