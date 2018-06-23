@@ -1,5 +1,6 @@
 import { Injectable, HttpService } from '@nestjs/common';
 import { DiarioOficial } from '../model/dto/diariooficial';
+import * as cheerio from 'cheerio';
 import { Noticia } from '../model/dto/noticia';
 
 @Injectable()
@@ -38,33 +39,11 @@ export class DioService {
         const pagina = await this.buscar_informacao(this.url_noticias);
 
         const $ = cheerio.load(pagina.data);
+        const titulo = this.buscar_titulos($);
+        const data = this.buscar_data($);
+        const texto = this.buscar_texto($);
+
         const noticias = [];
-
-        const titulos = $('a.link-color-color');
-        const textos = $('.noticia .text-color-color.text-family-font-family');
-        const datas = $('div .text-color-color.text-family-font-family.published ');
-
-        const titulo = [];
-        const texto = [];
-        const data = [];
-
-        datas.toArray().forEach(element => {
-            const div = element.firstChild.data.trimLeft().trimRight();
-            data.push(div);
-        });
-
-        titulos.toArray().forEach(element => {
-            const title = element.attribs.title;
-            if ( title.length > 50 ){
-                titulo.push(title);
-            }
-        });
-        textos.text().split('\n').forEach(element => {
-
-            if (element.length > 150) {
-                texto.push(element.substring(16).substring(0, element.length - 26));
-            }
-        });
 
         for (let index = 0; index < texto.length; index++) {
             const etexto = texto[index];
@@ -87,6 +66,40 @@ export class DioService {
         const pagina = await this.buscar_informacao(this.url_busca + query + '&f=true');
 
         return pagina.data;
+    }
+
+    private buscar_texto($: any){
+        const textos = $('.noticia .text-color-color.text-family-font-family');
+        const texto = [];
+        textos.text().split('\n').forEach(element => {
+            if (element.length > 150) {
+                texto.push(element.substring(16).substring(0, element.length - 26));
+            }
+        });
+        return texto;
+
+    }
+
+    private buscar_data($: any){
+        const data = [];
+        const datas = $('div .text-color-color.text-family-font-family.published ');
+        datas.toArray().forEach(element => {
+            const div = element.firstChild.data.trimLeft().trimRight();
+            data.push(div);
+        });
+        return data;
+    }
+
+    private buscar_titulos($: any){
+        const titulos = $('a.link-color-color');
+        const titulo = [];
+        titulos.toArray().forEach(element => {
+            const title = element.attribs.title;
+            if ( title.length > 50 ){
+                titulo.push(title);
+            }
+        });
+        return titulo;
     }
 
     /** Função responsável por buscar informações no site do DIO */
