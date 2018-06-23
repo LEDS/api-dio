@@ -21,11 +21,10 @@ export class DioService {
 
         pagina.data.itens.forEach(element => {
 
-            const diario = new DiarioOficial();
-
-            diario.date = element.data;
-            diario.description = element.tipo_edicao_nome;
-            diario.url = this.url_edicao + element.id;
+            const diario = new DiarioOficial(
+                this.url_edicao + element.id,
+                element.data,
+                element.tipo_edicao_nome);
 
             diarios.push(diario);
         });
@@ -46,14 +45,13 @@ export class DioService {
         const noticias = [];
 
         for (let index = 0; index < textos.length; index++) {
-            const texto = textos[index];
+
+            const conteudo = textos[index];
             const titulo = titulos[index];
             const data = datas[index];
 
-            const noticia = new Noticia();
-            noticia.titulo = titulo;
-            noticia.conteudo = texto;
-            noticia.data = data;
+            const noticia = new Noticia(titulo, conteudo, data);
+
             noticias.push(noticia);
         }
         if (noticias.length > 0) {

@@ -15,7 +15,7 @@ export class DioController {
         try {
             return this.dioService.retornar_ultirmos_diarios();
         } catch (error) {
-            throw new InformationNotFound();
+            throw new InformationNotFound('Diarios não encontrados');
         }
     }
 
@@ -25,7 +25,7 @@ export class DioController {
         try{
             return this.dioService.retornar_noticias();
         }catch (error){
-            throw new InformationNotFound();
+            throw new InformationNotFound('Noticias não encontradas');
         }
     }
     @Get('busca/:query')
@@ -33,7 +33,7 @@ export class DioController {
         try{
             return  this.dioService.buscar_diarios(query);
         }catch(error){
-            throw new InformationNotFound();
+            throw new InformationNotFound('Busca sem informação');
         }
     }
 }
