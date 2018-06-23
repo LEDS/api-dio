@@ -27,7 +27,7 @@ export class LatestService {
             noticias.push(noticia)
         });
         
-        if (typeof noticias !== 'undefined' && noticias.length > 0) {
+        if (noticias.length > 0) {
             return noticias
         }
         

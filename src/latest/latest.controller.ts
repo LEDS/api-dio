@@ -8,12 +8,12 @@ export class LatestController {
     @HttpCode(200)
     async search(){
         try{
-            return this.ls.get()
+            return this.ls.get();
         }catch(err){
             throw new HttpException({
                 status: HttpStatus.InternalServerErrorException,
                 error: 'Não há noticias no DIO',
-              }, 400);
+              }, 204);
         }
         
     }
