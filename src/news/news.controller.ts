@@ -12,6 +12,7 @@ export class NewsController {
       .get('http://dio.es.gov.br/Noticias?page=1')
       .toPromise();
     const $ = cheerio.load(pagina.data);
+
     const noticias = [];
     var x = true;
 

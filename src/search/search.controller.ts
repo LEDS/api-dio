@@ -3,9 +3,11 @@ import { SearchService } from './search.service';
 
 @Controller('search')
 export class SearchController {
-    constructor(private se : SearchService) {}
-    @Get(':query')
-    async latest(@Param('query') query){
-        return  this.se.get(query)
-    }
+  constructor(private se: SearchService) {}
+
+  @Get(':frase')
+  async buscadata(@Param('frase') frase) {
+    console.log(frase);
+    return this.se.get(frase);
+  }
 }
