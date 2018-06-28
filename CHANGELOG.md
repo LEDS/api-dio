@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.0"></a>
+# 1.3.0 (2018-06-25)
+
+
+### Bug Fixes
+
+* **modules:** removido ([2fc8d14](https://github.com/icarodgl/api-dio/commit/2fc8d14))
+* **news:** news agora pega data ([4c67e82](https://github.com/icarodgl/api-dio/commit/4c67e82))
+* **teste:** Remocao do arquivo de teste ([7be3baf](https://github.com/icarodgl/api-dio/commit/7be3baf))
+
+
+### Features
+
+* **ttt:** agora vai heim ([7bdb959](https://github.com/icarodgl/api-dio/commit/7bdb959))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/icarodgl/api-dio/compare/v1.2.0...v1.2.1) (2018-06-21)
 
