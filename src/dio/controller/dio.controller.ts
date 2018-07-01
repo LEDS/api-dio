@@ -24,14 +24,18 @@ export class DioController {
     
     @ApiUseTags('dio')
     @Get('/search/:frase')
+    @ApiResponse({ status: 200, description: 'Noticias quye contenha a frase', type: Noticia})
+    @ApiResponse({ status: 204, description: 'Noticicas não encontrados'}) 
     async buscafrase(@Param() params) {
         console.log(params.frase);
         console.log(params.di);
         console.log(params.df);
         return 'oi';
     }
-    
+    @ApiUseTags('dio')
     @Get('/search/:frase/:di/:df')
+    @ApiResponse({ status: 200, description: 'Noticias que contenha a frase e esteja entre as datas', type: Noticia})
+    @ApiResponse({ status: 204, description: 'Noticicas não encontrados'}) 
     async buscadata(@Param() params) {
         console.log(params.frase);
         console.log(params.di);

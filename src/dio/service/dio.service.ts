@@ -16,7 +16,8 @@ export class DioService {
         const lista = [];
         
         pagina.data.itens.forEach(element => {
-            const noticia = new Dio(element.description,element.url,this.url_edicao+element.data)
+            console.log()
+            const noticia = new Dio(element.tipo_edicao_nome,this.url_edicao+element.id,element.data)
             lista.push(noticia)
         });
 
