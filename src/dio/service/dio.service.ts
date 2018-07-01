@@ -7,7 +7,7 @@ export class DioService {
     private url_api = 'http://ioes.dio.es.gov.br/apifront/portal/edicoes/ultimas_edicoes/';
     private url_edicao = 'http://ioes.dio.es.gov.br/portal/edicoes/download/';
     private url_noticias = 'http://dio.es.gov.br/Noticias?page=';
-    private url_busca = 'http://ioes.dio.es.gov.br/busca#/p=1&q=';
+    private url_busca = 'http://ioes.dio.es.gov.br/busca/busca/buscar/'
 
     constructor(private readonly httpService: HttpService) {}
 
@@ -25,41 +25,21 @@ export class DioService {
 
         throw new Error ();
     }
-
-    async getSearch(frase) {
-        const query = { frase: frase, di: '', df: '' };
-        if (query.frase == '') {
-          return { erro: 'Nenhuma query' };
-        } else if (query.di == '' || query.df == '') {
-          this.searchSimples(query);
-        } else this.searchData(query);
-      }
     
-    async searchSimples(query) {       
-        const pagina = await this.httpService
-          .get(
-            'http://ioes.dio.es.gov.br/busca/busca/buscar/' +
-              query.frase +
-              '/0/?sort=date',
-          )
-          .toPromise();
-        return pagina.data;
+    async busca_simples(frase) {       
+       const pagina = await this.retornar_pagina(this.url_busca+frase+'/0/?sort=date')
+       return pagina.data;
       }
-      async searchData(query) {
-        console.log(query);
-        const pagina =  await this.httpService
-          .get(
-            'http://ioes.dio.es.gov.br/busca/busca/buscar/' +
-              query.frase +
-              '/0/di:' +
-              query.di +
-              '/df:' +
-              query.df +
-              '/?sort=' +
-              query.sort,
-          )
-          .toPromise();
-        return pagina.data;
+      async Busca_completa(query) {
+        const pagina = await this.retornar_pagina(
+            this.url_busca +'"'+
+            query.frase +'"'+
+            '/0/di:' +
+            query.di +
+            '/df:' +
+            query.df +
+            '/?sort=date')
+        return pagina.data.hits;
       }
 
       async realizar_paginacao(quantPaginas){

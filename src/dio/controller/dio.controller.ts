@@ -23,24 +23,22 @@ export class DioController {
     }
     
     @ApiUseTags('dio')
-    @Get('/search/:frase')
+    @Get('/busca/:frase')
     @ApiResponse({ status: 200, description: 'Noticias quye contenha a frase', type: Noticia})
     @ApiResponse({ status: 204, description: 'Noticicas não encontrados'}) 
     async buscafrase(@Param() params) {
         console.log(params.frase);
-        console.log(params.di);
-        console.log(params.df);
-        return 'oi';
+        return this.dioService.busca_simples(params.frase);
     }
     @ApiUseTags('dio')
-    @Get('/search/:frase/:di/:df')
+    @Get('/busca/:frase/:di/:df')
     @ApiResponse({ status: 200, description: 'Noticias que contenha a frase e esteja entre as datas', type: Noticia})
     @ApiResponse({ status: 204, description: 'Noticicas não encontrados'}) 
     async buscadata(@Param() params) {
         console.log(params.frase);
         console.log(params.di);
         console.log(params.df);
-        return 'oi';
+        return this.dioService.Busca_completa(params);
     }
     
     @ApiUseTags('dio')
@@ -49,10 +47,20 @@ export class DioController {
     @ApiResponse({ status: 204, description: 'Notiicas não encontrados'})   
     async noticias() {
         try {
-            return this.dioService.realizar_paginacao(1)
+            return this.dioService.realizar_paginacao(1)  
         } catch (error) {
             throw new InformationNotFound('Notícias não encontradas');
         }
-
+    }
+    @ApiUseTags('dio')
+    @Get('/noticias/:pg')
+    @ApiResponse({ status: 200, description: 'Últimas noticias ', type: Noticia})
+    @ApiResponse({ status: 204, description: 'Notiicas não encontrados'})   
+    async noticias_pagina(@Param() params) {
+        try {
+            return this.dioService.realizar_paginacao(params.pg)  
+        } catch (error) {
+            throw new InformationNotFound('Notícias não encontradas');
+        }
     }
 }
