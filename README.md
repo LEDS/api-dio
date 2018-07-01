@@ -2,8 +2,14 @@
 
 ## Description
 
-cleta informações do diario oficial do ES
+coleta informações do diario oficial do ES
 
+- rotas
+    - /noticias
+    - /noticias/paginas
+    - /ultimas
+    - /busca/palavra
+    - /busca/palavra/data_inicial/data_final (formato: 2000-01-01)
 ## Installation
 
 ```bash

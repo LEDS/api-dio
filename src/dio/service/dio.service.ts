@@ -2,6 +2,7 @@ import { Injectable, HttpService } from '@nestjs/common';
 import { Dio } from '../model/dto/dio';
 import {Noticia} from '../model/dto/noticia'
 import * as cheerio from 'cheerio';
+import { InformationNotFound } from '../model/exception/InformationNotFound';
 @Injectable()
 export class DioService {
     private url_api = 'http://ioes.dio.es.gov.br/apifront/portal/edicoes/ultimas_edicoes/';
@@ -23,12 +24,13 @@ export class DioService {
 
         if (lista.length > 0) return lista;
 
-        throw new Error ();
+        throw new Error();
     }
     
     async busca_simples(frase) {       
        const pagina = await this.retornar_pagina(this.url_busca+frase+'/0/?sort=date')
-       return pagina.data;
+       if (pagina.data.hits.total > 0)return pagina.data.hits;
+       throw new Error();
       }
       async Busca_completa(query) {
         const pagina = await this.retornar_pagina(
@@ -39,7 +41,8 @@ export class DioService {
             '/df:' +
             query.df +
             '/?sort=date')
-        return pagina.data.hits;
+        if (pagina.data.hits.total > 0) return pagina.data.hits;
+        throw new Error;
       }
 
       async realizar_paginacao(quantPaginas){
